@@ -9,7 +9,7 @@
 // *
 // * @param string $className название класса
 // */
-function __autoload($className) {
+function oldAutoload ($className) {
     $file = str_replace('\\', '/', str_replace('_', '/', ltrim($className, '\\')));
 
     // Примочка чтобы учесть регистр папки "class"
@@ -26,5 +26,9 @@ function __autoload($className) {
     if(file_exists("{$file}.php")){
         include_once "{$file}.php";
     }
-}
+};
+
+require_once 'vendor/autoload.php';
+
+spl_autoload_register('oldAutoload', true, true);
 
